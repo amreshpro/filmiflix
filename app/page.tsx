@@ -1,4 +1,4 @@
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Header";
 import { useUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -14,7 +14,7 @@ export default function Main() {
   // console.log(user);
   return (
     <div className="flex flex-col gap-4">
-    <h1>App Page</h1>
+      <h1>App Page</h1>
     </div>
   );
 }

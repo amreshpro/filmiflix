@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { IoMdSunny, IoMdMoon } from "react-icons/io";
 
-function ThemeSwitcher() {
+function ThemeSwitcher({className=''}) {
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -19,8 +19,10 @@ function ThemeSwitcher() {
   }
 
   if (!mounted) return null;
+
+  
   return (
-    <Button onClick={themeHandler}>
+    <Button onClick={themeHandler} className={className||''}>
       {theme == "dark" ? <IoMdSunny /> : <IoMdMoon />}
     </Button>
   );
