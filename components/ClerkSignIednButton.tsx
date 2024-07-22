@@ -7,7 +7,7 @@ function ClerkSignInButton({className=''}) {
     <div className={className}>
         {/* clerk sign in button */}
         <SignedOut>
-          <Button variant={"secondary"}>
+          <Button variant={"outline"}>
             <SignInButton />
           </Button>
         </SignedOut>
