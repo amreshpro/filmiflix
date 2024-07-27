@@ -1,6 +1,6 @@
 "use client";
 import { Button } from '@/components/ui/button'
-import { redirect, useRouter } from 'next/navigation'
+import {  useRouter } from 'next/navigation'
 import React from 'react'
 
 function NotFound() {

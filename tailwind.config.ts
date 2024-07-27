@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
+
+
 const config = {
   darkMode: ["class"],
   content: [
@@ -10,21 +12,23 @@ const config = {
   ],
   prefix: "",
   theme: {
-    screens: {
-      "2xl": { max: "1535px" },
-      // => @media (max-width: 1535px) { ... }
+   
+      screens: {
+        "2xl": { max: "1535px" },
+        // => @media (max-width: 1535px) { ... }
 
-      xl: { max: "1279px" },
-      // => @media (max-width: 1279px) { ... }
+        xl: { max: "1279px" },
+        // => @media (max-width: 1279px) { ... }
 
-      lg: { max: "1023px" },
-      // => @media (max-width: 1023px) { ... }
+        lg: { max: "1023px" },
+        // => @media (max-width: 1023px) { ... }
 
-      md: { max: "767px" },
-      // => @media (max-width: 767px) { ... }
+        md: { max: "767px" },
+        // => @media (max-width: 767px) { ... }
 
-      sm: { max: "639px" },
-      // => @media (max-width: 639px) { ... }
+        sm: { max: "639px" },
+        // => @media (max-width: 639px) { ... }
+      
     },
 
     container: {
@@ -35,6 +39,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -88,9 +95,6 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-      },
-      fontFamily: {
-        sans: ["var(--font-sans)", ...fontFamily.sans],
       },
     },
   },

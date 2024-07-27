@@ -4,5 +4,9 @@ export default function Page() {
 
 
     
-  return <SignUp />;
+  return 
+  <div className="auth flex justify-center py-8">
+
+    <SignUp />
+  </div>
 }

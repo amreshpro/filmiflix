@@ -7,9 +7,9 @@ function ClerkSignInButton({className=''}) {
     <div className={className}>
         {/* clerk sign in button */}
         <SignedOut>
-          <Button variant={"outline"}>
+          <div className='text-sm text-white bg-cyan-700 px-2 py-2 rounded-lg w-fit'>
             <SignInButton />
-          </Button>
+          </div>
         </SignedOut>
         <SignedIn>
           <UserButton />

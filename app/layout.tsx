@@ -3,12 +3,9 @@ import { Inter as FontSans } from "next/font/google";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
+
 } from "@clerk/nextjs";
-import "@/styles/globals.css";
+import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Header";
 

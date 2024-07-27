@@ -2,5 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 import React from "react";
 
 export default function Page() {
-  return <SignIn />;
+  return <div className="auth flex justify-center py-8">
+    <SignIn />
+    </div>
 }

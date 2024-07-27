@@ -1,20 +1,9 @@
-import Navbar from "@/components/Header";
-import { useUser } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
-import React from "react";
-import Loader from "./loader";
+import React from 'react'
 
-export default function Main() {
-  // const { isSignedIn, user, isLoaded } =  useUser();
-
-  // if (!isLoaded) return <Loader />;
-  // if (!isSignedIn) {
-  //   redirect("/sign-up");
-  // }
-  // console.log(user);
+export default function App() {
   return (
-    <div className="flex flex-col gap-4">
-      <h1>App Page</h1>
+    <div>
+      <h1>app</h1>
     </div>
-  );
+  )
 }

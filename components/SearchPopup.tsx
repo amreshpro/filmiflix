@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 
 export default function SearchPopup() {
