@@ -10,6 +10,7 @@ import NavLink from "./NavLink";
 import { Button } from "./ui/button";
 import Sidebar from "./Sidebar";
 import Image from "next/image";
+import Loading from "@/app/loading";
 
 function Header() {
   const [isMobileMenu, setIsMobileMenu] = useState(false);
@@ -30,7 +31,7 @@ function Header() {
       <div className="links sm:hidden flex items-center gap-4 ">
         <ThemeSwitcher />
         <NavLink />
-        <ClerkSignInButton />
+     <ClerkSignInButton /> 
       </div>
 
       {/* mobile menu button */}
@@ -47,7 +48,7 @@ function Header() {
       </Button>
 
       {isMobileMenu && (
-        <div className="sidebar absolute top-16 right-0  w-1/3 sm:w-1/2 h-full flex flex-col gap-6 bg-secondary ">
+        <div className="sidebar hidden  absolute top-16 right-0  w-1/3 sm:w-1/2 h-full sm:flex flex-col gap-6 bg-secondary ">
           <Sidebar />
         </div>
       )}

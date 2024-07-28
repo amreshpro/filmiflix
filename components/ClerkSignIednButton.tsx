@@ -1,6 +1,6 @@
-import { SignedOut, SignInButton, SignedIn, UserButton } from '@clerk/nextjs'
 import React from 'react'
-import { Button } from './ui/button'
+import { SignedOut, SignInButton, SignedIn, UserButton } from '@clerk/nextjs'
+
 
 function ClerkSignInButton({className=''}) {
   return (
@@ -12,7 +12,7 @@ function ClerkSignInButton({className=''}) {
           </div>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+     <UserButton /> 
         </SignedIn>
     </div>
   )
