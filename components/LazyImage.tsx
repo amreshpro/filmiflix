@@ -23,7 +23,7 @@ if(src){
 
     return (
     <Image
-    src={imgSrc}
+    src={imgSrc??placeholderImage}
     alt={alt}
     className={className}
  width={100}

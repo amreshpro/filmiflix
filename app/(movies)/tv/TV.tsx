@@ -19,7 +19,7 @@ type MovieCardPropType = {
   vote_average: number;
 };
 
-export default function Movie(props: MovieCardPropType) {
+export default function TV(props: MovieCardPropType) {
   const {
     adult=true,
     original_title='Not Known',
@@ -33,7 +33,7 @@ export default function Movie(props: MovieCardPropType) {
   } = props;
 
   return (
-    <div className="sticky w-60 bg-secondary rounded-lg p-2 px-4 py-4  overflow-hidden">
+    <div className="sticky w-60 bg-secondary rounded-lg p-2 overflow-hidden">
       <LazyImage
         src={`${IMAGE_BASE_URL}/${poster_path}`}
         alt="Movie Poster"

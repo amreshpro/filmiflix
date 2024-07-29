@@ -1,10 +1,8 @@
 "use client";
 import Loading from "@/app/loading";
 import { fetchMovie } from "@/lib/api";
-import getData from "@/lib/fetchData";
 import { useQuery } from "@tanstack/react-query";
 import Movie from "./Movie";
-import { JSX, Key } from "react";
 
 export default function Movies() {
   const { data, isLoading, error } = useQuery({
@@ -20,8 +18,8 @@ export default function Movies() {
   console.log(data?.results);
   return (
     <div>
-      <h1>Movies</h1>
-      <div className="movies flex gap-6 justify-center flex-wrap ">
+      {/* <h1>Movies</h1> */}
+      <div className="movies flex gap-8 justify-center flex-wrap  py-8">
         {
           data?.results.map((movie: any,i:number)=>{
             return <Movie  {...movie} key={i}/>
