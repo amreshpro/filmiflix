@@ -46,7 +46,7 @@ export default function Movie(props: MovieCardPropType) {
         <p>{dayjs(release_date || first_air_date).format("MMM D, YYYY")}</p>
 
         <div className="rating absolute top-8 ">
-          {vote_average && <Rating rating={vote_average} />}
+          {vote_average && <Rating  rating={vote_average}  />}
         </div>
         <h1 className="absolute text-red-500 font-bold ">
           {adult ? "18+" : ""}

@@ -1,26 +1,30 @@
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
 
-type PropsRatingType={
-rating:number
-}
-const Rating = (props:PropsRatingType) => {
-    const { rating } = props;
-    return (
-        <div className="w-12 h-12 bg-white rounded-full font-bold">
-            <CircularProgressbar
-                value={rating}
-                minValue={0}
-                maxValue={10}
-                text={`${rating?.toFixed(1)}`}
-                styles={buildStyles({
-                    pathColor:
-                        rating < 5 ? 'red' : rating < 7 ? 'orange' : 'green',
-                    textColor: '#0c296b',
-                    textSize: '28px',
-                })}
-            />
-        </div>
-    );
+
+type PropsRatingType = {
+  rating: number;
+//   className: string;
+  variant: string;
 };
+
+const VARIANT = {
+  NEUTRAL: "bg-yellow-500",
+  LOW: "bg-red-500",
+  HIGH: "bg-green-600",
+  BETTER: "bg-blue-500",
+  GOOD: "bg-yellow-700",
+};
+
+const Rating = (props: PropsRatingType) => {
+  const { rating=5, variant='' } = props;
+  console.log(rating);
+
+  return (
+   
+      <div className={`star p-4 h-16 w-16 bg-yellow-300 text-center text-black text-sm font-bold`} >
+        <p className=" m-2  text-sm ">{rating.toFixed(1)}</p>
+          </div>
+  );
+};
+
+Rating.VARIANT = VARIANT;
 export default Rating;
