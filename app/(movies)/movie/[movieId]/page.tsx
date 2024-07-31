@@ -1,15 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import ImagePoster from "@/components/ImagePoster";
-import KeyValueText from "@/components/KeyValueText";
-import MovieVideos from "@/components/MovieVideos";
-import StarCast from "@/components/StarCast";
-import fetchData from "@/lib/fetchData";
 
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Loading from "@/components/Loading";
+import fetchData from "@/lib/fetchData";
+import KeyValueText from "@/components/KeyValueText";
+import MovieVideos from "@/components/MovieVideos";
+import StarCast from "@/components/StarCast";
+import ImagePoster from "@/components/ImagePoster";
+import Loading from "@/app/loading";
+
 
 //types
 type MoviePropTypes = {
@@ -17,14 +18,14 @@ type MoviePropTypes = {
   title?: string;
   genres?: { id: number; name: string }[];
   overview?: string;
-  number_of_episodes?: number;
-  number_of_seasons?: number;
   vote_average?: number;
   tagline?: string;
   release_date?: string;
   status?: string;
   runtime?: number;
 };
+
+
 
 type MovieDetailsType = {
   movies: {};
@@ -49,14 +50,13 @@ export default function DetailsOfTV() {
 
   useEffect(() => {
     setLoading(true);
-    fetchData(`/tv/${router?.tvId}`).then((data) => {
+    fetchData(`/movie/${router?.movieId}`).then((data) => {
       setAllMovieDetails((prev) => {
         return { ...prev, movies: data.data };
       });
       setLoading(false);
     });
-
-    fetchData(`/tv/${router?.tvId}/credits`).then((data) => {
+    fetchData(`/movie/${router?.movieId}/credits`).then((data) => {
       setAllMovieDetails((prev) => {
         prev.credits.cast = data.data.cast;
         prev.credits.crew = data.data.crew;
@@ -64,23 +64,21 @@ export default function DetailsOfTV() {
       });
       setLoading(false);
     });
-    fetchData(`/tv/${router?.tvId}/videos`).then((data) => {
+    fetchData(`/movie/${router?.movieId}/videos`).then((data) => {
       setAllMovieDetails((prev) => {
         return { ...prev, videos: data.data.results };
       });
       setLoading(false);
     });
-  }, [router?.tvId]);
+  }, [router?.movieId]);
 
   if (loading) return <Loading />;
 
   const {
-    poster_path,
+    poster_path = "",
     title,
     genres,
     overview,
-    number_of_episodes,
-    number_of_seasons,
     vote_average,
     tagline,
     release_date,
@@ -88,16 +86,18 @@ export default function DetailsOfTV() {
     runtime,
   }: MoviePropTypes = allMovieDetails.movies;
 
-  const WriterNameArray = allMovieDetails?.credits?.crew?.filter((item:any) => {
-    return item.known_for_department == "Writing"
- } );
+  const WriterNameArray = allMovieDetails?.credits?.crew?.filter(
+    (item: any) => {
+      return item.known_for_department == "Writing";
+    }
+  );
 
-  const DirectorNameArray = allMovieDetails?.credits?.crew?.filter((item:any) => {
-     return item.known_for_department == "Directing"
-  } );
+  const DirectorNameArray = allMovieDetails?.credits?.crew?.filter(
+    (item: any) => {
+      return item.known_for_department == "Directing";
+    }
+  );
 
-  console.log(DirectorNameArray);
-console.log(allMovieDetails?.credits?.crew)
   return (
     <div className="container mt-4 px-4 ">
       <div className="details flex justify-evenly gap-2 sm:flex-wrap w-full">
@@ -106,8 +106,10 @@ console.log(allMovieDetails?.credits?.crew)
           <h1 className="text-2xl font-bold">{title}</h1>
           {/* tagline */}
           <h2 className="text-xl">{tagline}</h2>
+
           <p className="mt-2">{overview}</p>
 
+          {/* status */}
           <div className="mt-2 status flex flex-col sm:flex-wrap gap-3 ">
             {/* status */}
             <KeyValueText title="Status" value={status} />
@@ -117,25 +119,33 @@ console.log(allMovieDetails?.credits?.crew)
               title="Release Date"
               value={dayjs(release_date).format("MMM D, YYYY") ?? "unknown"}
             />
-            {/* total season */}
-            <KeyValueText title="Total Season" value={number_of_seasons} />
 
-            {/* total episode */}
-            <KeyValueText title="Total Episodes" value={number_of_episodes} />
+            {/* runtime */}
+            <KeyValueText
+              title="Runtime"
+              value={`     
+                ${Math.floor(runtime! / 60)}h 
+                ${runtime! % 60}m`}
+            />
+
             {/* director */}
             <KeyValueText
               title="Directors"
-              value={DirectorNameArray?.slice(0,5).map((item: {name:string}) => {
-                return item.name;
-              }).join(", ")}
+              value={DirectorNameArray?.slice(0, 5)
+                .map((item: { name: string }) => {
+                  return item.name;
+                })
+                .join(", ")}
             />
 
             {/* writer */}
             <KeyValueText
               title="Writers"
-              value={WriterNameArray?.slice(0,5).map((item: any) => {
-                return item?.name ?? "unknown";
-              })?.join(", ")}
+              value={WriterNameArray?.slice(0, 5)
+                .map((item: any) => {
+                  return item?.name ?? "unknown";
+                })
+                ?.join(", ")}
             />
           </div>
         </div>

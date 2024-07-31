@@ -1,8 +1,7 @@
+import dayjs from "dayjs";
 import LazyImage from "@/components/LazyImage";
 import Rating from "@/components/Rating";
 import { MOVIE_GENRES } from "@/constants/GENRES";
-
-import dayjs from "dayjs";
 
 
 const IMAGE_BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
@@ -46,7 +45,7 @@ export default function Movie(props: MovieCardPropType) {
         <p>{dayjs(release_date || first_air_date).format("MMM D, YYYY")}</p>
 
         <div className="rating absolute top-8 ">
-          {vote_average && <Rating rating={vote_average} />}
+          {vote_average && <Rating  rating={vote_average}  />}
         </div>
         <h1 className="absolute text-red-500 font-bold ">
           {adult ? "18+" : ""}

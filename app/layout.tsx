@@ -5,6 +5,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Navbar from "@/components/Header";
 import AppProviders from "@/providers/AppProviders";
+import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "FilmiFlix",
@@ -32,7 +33,7 @@ export default function RootLayout({
         <AppProviders>
           <Navbar/>
           {children}
-          </AppProviders>
+                   </AppProviders>
       </body>
     </html>
   );

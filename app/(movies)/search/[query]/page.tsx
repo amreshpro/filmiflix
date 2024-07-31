@@ -2,8 +2,10 @@
 import fetchData from "@/lib/fetchData";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Shimmer from "../loading";
-import MovieCard from "@/components/MovieCard";
+import Shimmer from "../Shimmer";
+
+import Link from "next/link";
+import Movie from "@/components/MovieCard";
 
 export default function SearchList() {
   const router = useParams<{ query: string }>();
@@ -37,6 +39,9 @@ export default function SearchList() {
 
   if (isLoading) return <Shimmer/>
   if (!router?.query) return <h1>Not found anything</h1>;
+
+
+
   return (
     <div>
       {router?.query && (
@@ -50,7 +55,9 @@ export default function SearchList() {
           <h1 className="text-xl">No Results Found</h1>
         ) : (
           searchedData?.map((movie: any) => {
-            return <MovieCard key={movie.id} {...movie} />;
+            return   <Link href={`/${movie?.media_type}/${movie.id}`} key={movie.id}>
+            <Movie {...movie} />
+          </Link>;
           })
         )}
       </div>

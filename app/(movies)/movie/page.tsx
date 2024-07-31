@@ -1,30 +1,31 @@
 "use client";
 import Loading from "@/app/loading";
 import { useQuery } from "@tanstack/react-query";
+import Movie from "@/components/MovieCard";
 import Link from "next/link";
 import fetchData from "@/lib/fetchData";
-import Movie from "@/components/MovieCard";
 
-export default function TVSeries() {
+
+export default function Movies() {
   const { data, isLoading, error } = useQuery({
-    queryKey: ["tv"],
+    queryKey: ["movie"],
     queryFn: async () => {
-      return fetchData("/discover/tv");
+      return fetchData("/discover/movie");
     },
   });
 
   if (isLoading) return <Loading />;
   if (error) return <h1>{error.message}</h1>;
 
- 
+
   return (
     <div>
-      <h1 className="text-xl px-4  py-4">TV Series</h1>
-      <div className="movies flex gap-8  justify-center flex-wrap py-8 ">
-        {data?.data?.results?.map((tv: any) => {
+      <h1 className="text-xl px-4  py-4">Movies</h1>
+      <div className="movies flex gap-8 justify-center flex-wrap  py-8">
+        {data?.data?.results?.map((movie: any) => {
           return (
-            <Link href={`/tv/${tv.id}`} key={tv.id}>
-              <Movie {...tv} />
+            <Link href={`/movie/${movie.id}`} key={movie.id}>
+              <Movie {...movie} />
             </Link>
           );
         })}
