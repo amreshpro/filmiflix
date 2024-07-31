@@ -32,7 +32,7 @@ export default function Movie(props: MovieCardPropType) {
   } = props;
 
   return (
-    <div className="sticky w-60 bg-secondary rounded-lg p-2 px-4 py-4  overflow-hidden">
+    <div className="sticky w-60 h-[400px] bg-secondary rounded-lg p-2 px-4 py-4 my-8  overflow-hidden">
       <LazyImage
         src={`${IMAGE_BASE_URL}/${poster_path}`}
         alt="Movie Poster"
