@@ -55,7 +55,7 @@ function toggleSearchPopup(){
       </Button>
 
       {isMobileMenu && (
-        <div className="sidebar hidden  absolute top-16 right-0  w-1/3 sm:w-1/2 h-full sm:flex flex-col gap-6 bg-secondary ">
+        <div className="sidebar z-50  hidden  absolute top-16 right-0  w-1/3 sm:w-1/2 h-full sm:flex flex-col gap-6 bg-ternary">
           <Sidebar />
         </div>
       )}
