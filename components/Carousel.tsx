@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useRef } from "react";
+import { FunctionComponent, JSXElementConstructor, useRef } from "react";
 import MovieCard from "./MovieCard";
 import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaChevronCircleRight } from "react-icons/fa";
@@ -20,10 +20,11 @@ type MovieCardPropType = {
 
 type CarouselPropType = {
   data: MovieCardPropType[];
+ 
 };
 
-export default function Carousel({ data }: CarouselPropType) {
-    const containerRef = useRef<HTMLDivElement>(null);
+export default function Carousel({ data,}: CarouselPropType) {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
     if (containerRef.current) {
@@ -37,6 +38,8 @@ export default function Carousel({ data }: CarouselPropType) {
     }
   };
 
+
+
   return (
     <div className="slider flex px-2">
       <button onClick={scrollLeft} className="text-2xl">
@@ -49,7 +52,7 @@ export default function Carousel({ data }: CarouselPropType) {
         {data?.map((item) => {
           return (
             <Link href={`/movies/${item?.id}`} key={item?.id}>
-              <MovieCard {...item} />
+               <MovieCard {...item} />
             </Link>
           );
         })}
