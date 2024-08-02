@@ -10,7 +10,7 @@ export default function HeroShimmer() {
       <h1 className="px-2 mx-2 text-xl mb-5 mt-2 font-bold outline">
         Movie of the Day
       </h1>
-      <div className="movie-day container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4 ">
+      <div className="movie-day container transition-all flex gap-4 justify-center sm:flex-wrap overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4 ">
       {ZERO_FILL_ARRAY?.map((_,id) => {
           return <SkeltonCard key={id+"movieday"} />;
         })}
@@ -19,7 +19,7 @@ export default function HeroShimmer() {
       <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
         TV Show of the Day
       </h1>
-      <div className="tv-day container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
+      <div className="tv-day container transition-all flex gap-4 justify-center  sm:flex-wrap overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
         {ZERO_FILL_ARRAY?.map((_,id) => {
           return <SkeltonCard key={id+"tvday"} />;
         })}
@@ -28,7 +28,7 @@ export default function HeroShimmer() {
       <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline ">
         Movie of the Week
       </h1>
-      <div className="tv-week container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
+      <div className="tv-week container transition-all flex gap-4 justify-center sm:flex-wrap  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
       {ZERO_FILL_ARRAY?.map((_,id) => {
           return <SkeltonCard key={id+"tvweek"} />;
         })}
@@ -36,7 +36,7 @@ export default function HeroShimmer() {
       <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
         TV Show of the Week
       </h1>
-      <div className="tv-week container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
+      <div className="tv-week container transition-all flex justify-center sm:flex-wrap gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
       {ZERO_FILL_ARRAY?.map((_,id) => {
           return <SkeltonCard key={id+"tvweek"} />;
         })}

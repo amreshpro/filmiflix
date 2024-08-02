@@ -17,7 +17,7 @@ export default function Hero() {
     useFetch("/trending/tv/week");
     if(loadingMovie || loadingTV||loadingMovieWeek || loadingTVWeek) return <HeroShimmer/>
 
-  return <div className="hero mt-5 flex flex-col items-center text-center ">
+  return <div className="hero my-5 flex flex-col items-center text-center ">
     <h1 className="px-2 mx-2 text-xl mb-5 mt-2 font-bold outline">Movie of the Day</h1>
     <div className="movie-day">
       <Carousel data={movieDataDay} />

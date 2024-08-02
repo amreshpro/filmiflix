@@ -32,6 +32,8 @@ function toggleSearchPopup(){
           <Image alt="logo" src="/logo.png" width={40} height={15} />
         </Link>
         <ThemeSwitcher className="hidden sm:flex" />
+        <Button onClick={toggleSearchPopup} className="hidden sm:flex"><IoSearch/></Button>
+
       </div>
 
       <div className="links sm:hidden flex items-center gap-4 ">
@@ -60,7 +62,11 @@ function toggleSearchPopup(){
         </div>
       )}
     </header>
-    {isSearchOpen && <SearchPopup className="absolute top-16 left-1/3 p-4 rounded-lg"/>}
+    {isSearchOpen && <div className="search my-4  flex justify-center items-center sm:mx-4 ">
+      <SearchPopup className=" rounded-lg  px-2"/>
+    </div>
+      }
+    
       </>
   );
 }
