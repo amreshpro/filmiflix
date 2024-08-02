@@ -16,6 +16,7 @@ type MovieCardPropType = {
   genre_ids: number[];
   name: string;
   vote_average: number;
+  media_type:string
 };
 
 type CarouselPropType = {
@@ -51,7 +52,7 @@ export default function Carousel({ data,}: CarouselPropType) {
       >
         {data?.map((item) => {
           return (
-            <Link href={`/movies/${item?.id}`} key={item?.id}>
+            <Link href={`/${item?.media_type}/${item?.id}`} key={item?.id}>
                <MovieCard {...item} />
             </Link>
           );

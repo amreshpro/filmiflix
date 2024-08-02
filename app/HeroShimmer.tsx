@@ -11,8 +11,8 @@ export default function HeroShimmer() {
         Movie of the Day
       </h1>
       <div className="movie-day container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4 ">
-        {ZERO_FILL_ARRAY?.map((item) => {
-          return <SkeltonCard key={item.id} />;
+      {ZERO_FILL_ARRAY?.map((_,id) => {
+          return <SkeltonCard key={id+"movieday"} />;
         })}
       </div>
 
@@ -20,8 +20,8 @@ export default function HeroShimmer() {
         TV Show of the Day
       </h1>
       <div className="tv-day container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
-        {ZERO_FILL_ARRAY?.map((item) => {
-          return <SkeltonCard key={item.id} />;
+        {ZERO_FILL_ARRAY?.map((_,id) => {
+          return <SkeltonCard key={id+"tvday"} />;
         })}
       </div>
 
@@ -29,16 +29,16 @@ export default function HeroShimmer() {
         Movie of the Week
       </h1>
       <div className="tv-week container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
-        {ZERO_FILL_ARRAY?.map((item) => {
-          return <SkeltonCard key={item.id} />;
+      {ZERO_FILL_ARRAY?.map((_,id) => {
+          return <SkeltonCard key={id+"tvweek"} />;
         })}
       </div>
       <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
         TV Show of the Week
       </h1>
       <div className="tv-week container transition-all flex gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
-        {ZERO_FILL_ARRAY?.map((item) => {
-          return <SkeltonCard key={item.id} />;
+      {ZERO_FILL_ARRAY?.map((_,id) => {
+          return <SkeltonCard key={id+"tvweek"} />;
         })}
       </div>
     </div>
