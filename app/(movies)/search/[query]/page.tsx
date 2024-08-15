@@ -1,11 +1,12 @@
 "use client";
-import fetchData from "@/lib/fetchData";
+// import fetchMovies from "@/lib/fetchMovies";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Shimmer from "../Shimmer";
 
 import Link from "next/link";
 import Movie from "@/components/MovieCard";
+import fetcher from "@/lib/fetcher";
 
 export default function SearchList() {
   const router = useParams<{ query: string }>();
@@ -23,7 +24,7 @@ export default function SearchList() {
       console.log("value: " + searchText);
       async function getSearchedData() {
         setIsLoading(true);
-        const res = await fetchData(`/search/multi?query=${searchText}`);
+        const res = await fetcher(`/search/multi?query=${searchText}`);
         setIsLoading(false);
         return res.data;
       }
@@ -37,10 +38,8 @@ export default function SearchList() {
     return () => clearTimeout(timer);
   }, [searchText]);
 
-  if (isLoading) return <Shimmer/>
+  if (isLoading) return <Shimmer />;
   if (!router?.query) return <h1>Not found anything</h1>;
-
-
 
   return (
     <div>
@@ -55,9 +54,11 @@ export default function SearchList() {
           <h1 className="text-xl">No Results Found</h1>
         ) : (
           searchedData?.map((movie: any) => {
-            return   <Link href={`/${movie?.media_type}/${movie.id}`} key={movie.id}>
-            <Movie {...movie} />
-          </Link>;
+            return (
+              <Link href={`/${movie?.media_type}/${movie.id}`} key={movie.id}>
+                <Movie {...movie} />
+              </Link>
+            );
           })
         )}
       </div>

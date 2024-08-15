@@ -6,16 +6,15 @@ export default function MovieVideos({
 }: {
   data: { key: string; name: string }[];
 }) {
-  if (data.length == 0) return "";
+  if (data.length == 0 || data == undefined) return "";
 
   return (
     <div>
       <div className="related-videos mt-4">
         <h1 className="text-2xl mb-4 px-2 ">Movie Related Videos</h1>
         <div className="official-videos flex justify-start sm:justify-center sm:gap-2 gap-4 flex-wrap">
-          {data
-            .slice(0, 5)
-            .map((video: { key: string; name: string }, i: number) => {
+          {(data.length > 5 ? data.slice(0, 5) : data).map(
+            (video: { key: string; name: string }, i: number) => {
               return (
                 <VideoBox
                   {...video}
@@ -24,7 +23,8 @@ export default function MovieVideos({
                   key={"videoboxmapkey" + i}
                 />
               );
-            })}
+            }
+          )}
         </div>
       </div>
     </div>

@@ -3,14 +3,12 @@
 
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
-import fetchData from "@/lib/fetchData";
 import KeyValueText from "@/components/KeyValueText";
-import MovieVideos from "@/components/MovieVideos";
 import StarCast from "@/components/StarCast";
 import ImagePoster from "@/components/ImagePoster";
+import useMovieDetails from "@/lib/useMovieDetails";
 import Loading from "@/app/loading";
-
+import MovieVideos from "@/components/MovieVideos";
 
 //types
 type MoviePropTypes = {
@@ -25,54 +23,40 @@ type MoviePropTypes = {
   runtime?: number;
 };
 
-
-
-type MovieDetailsType = {
-  movies: {};
-  credits: {
-    cast: [];
-    crew: [];
-  };
-  videos: [];
-};
-
-export default function DetailsOfTV() {
-  const router = useParams();
-  const [loading, setLoading] = useState(false);
-  const [allMovieDetails, setAllMovieDetails] = useState<MovieDetailsType>({
-    movies: {},
-    credits: {
-      cast: [],
-      crew: [],
+export default function DetailsOfMovies() {
+  const { movieId } = useParams();
+  const queries = [
+    {
+      queryKey: "movieData",
+      endpoint: `/movie/${movieId}`,
+      params: { page: 1 },
     },
-    videos: [],
-  });
+    {
+      queryKey: "movieCredits",
+      endpoint: `/movie/${movieId}/credits`,
+      params: { page: 1 },
+    },
+    {
+      queryKey: "movieVideos",
+      endpoint: `/movie/${movieId}/videos`,
+      params: { page: 1 },
+    },
+  ];
+  const results = useMovieDetails(queries);
 
-  useEffect(() => {
-    setLoading(true);
-    fetchData(`/movie/${router?.movieId}`).then((data) => {
-      setAllMovieDetails((prev) => {
-        return { ...prev, movies: data.data };
-      });
-      setLoading(false);
-    });
-    fetchData(`/movie/${router?.movieId}/credits`).then((data) => {
-      setAllMovieDetails((prev) => {
-        prev.credits.cast = data.data.cast;
-        prev.credits.crew = data.data.crew;
-        return prev;
-      });
-      setLoading(false);
-    });
-    fetchData(`/movie/${router?.movieId}/videos`).then((data) => {
-      setAllMovieDetails((prev) => {
-        return { ...prev, videos: data.data.results };
-      });
-      setLoading(false);
-    });
-  }, [router?.movieId]);
+  const isLoading = results.some((result) => result.isLoading);
+  const isError = results.some((result) => result.isError);
+  const data = results.map((result) => result.data);
+  const error = results.map((result) => result.error);
 
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
+  if (isError) {
+    return <div>Error: {error.toString()}</div>;
+  }
+
+  const MovieData = data[0];
+  const MovieCredit = data[1];
+  const MovieVideosList = data[2].results ?? [];
 
   const {
     poster_path = "",
@@ -84,19 +68,15 @@ export default function DetailsOfTV() {
     release_date,
     status,
     runtime,
-  }: MoviePropTypes = allMovieDetails.movies;
+  }: MoviePropTypes = MovieData;
 
-  const WriterNameArray = allMovieDetails?.credits?.crew?.filter(
-    (item: any) => {
-      return item.known_for_department == "Writing";
-    }
-  );
+  const WriterNameArray = MovieCredit?.crew?.filter((item: any) => {
+    return item.known_for_department == "Writing";
+  });
 
-  const DirectorNameArray = allMovieDetails?.credits?.crew?.filter(
-    (item: any) => {
-      return item.known_for_department == "Directing";
-    }
-  );
+  const DirectorNameArray = MovieCredit?.crew?.filter((item: any) => {
+    return item.known_for_department == "Directing";
+  });
 
   return (
     <div className="container mt-4 px-4 ">
@@ -152,9 +132,9 @@ export default function DetailsOfTV() {
       </div>
 
       {/* cast */}
-      <StarCast data={allMovieDetails.credits?.cast} />
+      <StarCast data={MovieCredit?.cast} />
       {/* movie releated videos */}
-      <MovieVideos data={allMovieDetails?.videos} />
+      <MovieVideos data={MovieVideosList} />
     </div>
   );
 }
