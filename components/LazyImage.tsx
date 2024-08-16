@@ -9,7 +9,7 @@ type ImageTypes={
     alt:string,
     className:string,
     width?:number,
-    heigth?:number,
+    height?:number,
 }
 
 export default function LazyImage({src='',alt="image-poster",className=''}:ImageTypes) {
