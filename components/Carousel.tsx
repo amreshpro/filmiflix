@@ -44,7 +44,7 @@ export default function Carousel({ data }: CarouselPropType) {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <button
         onClick={scrollLeft}
         className="text-2xl absolute left-4 top-1/2 transform -translate-y-1/2 z-50"
@@ -63,7 +63,7 @@ export default function Carousel({ data }: CarouselPropType) {
 
       <div
         ref={containerRef}
-        className="container flex gap-4 overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4"
+        className="w-screen flex gap-4 overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4"
         tabIndex={0}
       >
         {data?.map((item) => (
