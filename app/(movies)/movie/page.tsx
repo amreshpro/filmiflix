@@ -40,7 +40,6 @@ export default function Movies() {
     queryFn: movieFetcher,
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      // Check if the last page is less than the total pages
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
       } else {
