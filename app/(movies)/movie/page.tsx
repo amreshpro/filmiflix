@@ -7,13 +7,13 @@ import Shimmer from "./Shimmer";
 import Loader from "@/components/Loader";
 import fetcher from "@/lib/fetcher";
 
-// Define TypeScript types (optional)
 interface Movie {
   id: number;
   title: string;
   overview: string;
   poster_path: string;
-  // Add other relevant fields here
+  vote_average: number;
+  first_air_date: string;
 }
 
 interface MovieResponse {

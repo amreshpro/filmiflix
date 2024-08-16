@@ -2,21 +2,19 @@
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Link from "next/link";
+
 import Movie from "@/components/MovieCard";
 import Shimmer from "./Shimmer";
 import Loader from "@/components/Loader";
 import fetcher from "@/lib/fetcher";
 
-// Define TypeScript types (optional)
 interface TVShow {
   id: number;
   name: string;
-  original_name: string;
-  overview: string;
   poster_path: string;
-  vote_average: number;
   first_air_date: string;
-  // Add other relevant fields here
+  genre_ids: number[];
+  vote_average: number;
 }
 
 interface TVShowResponse {
@@ -24,12 +22,22 @@ interface TVShowResponse {
   total_pages: number;
   results: TVShow[];
 }
+type FetchTVShowsParams = {
+  pageParam?: number; // Optional parameter for pagination
+};
 
-// Async function to fetch TV shows with infinite scroll
-async function movieFetcher({ pageParam = 1 }): Promise<TVShowResponse> {
-  const response = await fetcher("/discover/tv", { page: pageParam });
-  return response.data || response;
-}
+
+
+// Fetch function
+const fetchTVShows = async ({ pageParam = 1 }:FetchTVShowsParams): Promise<TVShowResponse> => {
+  try {
+    const response = await fetcher("/discover/tv", { page: pageParam });
+    return response.data || response;
+  } catch (error) {
+    console.error("Error fetching TV shows:", error);
+    throw error; // Make sure to throw error so React Query can handle it
+  }
+};
 
 export default function TVShows() {
   const {
@@ -39,31 +47,28 @@ export default function TVShows() {
     fetchNextPage,
     error,
     hasNextPage,
-  } = useInfiniteQuery<TVShowResponse>({
+  } = useInfiniteQuery<TVShowResponse, Error>({
     queryKey: ["tv"],
-    queryFn: movieFetcher,
-    getNextPageParam: (lastPage) => {
-      // Determine the next page to load
+    queryFn: fetchTVShows,
+    initialPageParam:1,
+    getNextPageParam: (lastPage):number | undefined => {
+      // Check if there are more pages
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;
-      } else {
-        return undefined;
       }
+      return undefined; // No more pages
     },
   });
 
-  // Handle loading state
   if (isLoading) return <Shimmer />;
-
-  // Handle error state
-  if (error) return <h1 className="text-red-500">{(error as Error).message}</h1>;
+  if (error) return <div className="text-red-500">{(error as Error).message}</div>;
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center flex-wrap px-4 my-2">
       <h1 className="text-xl w-fit px-4 py-4 outline">TV Series</h1>
       <div className="movies flex gap-8 justify-center flex-wrap py-8">
-        {data?.pages?.flatMap((page) =>
-          page?.results.map((tv: TVShow) => (
+        {data?.pages.flatMap((page:any) =>
+          page.results.map((tv:TVShow) => (
             <Link href={`/tv/${tv.id}`} key={tv.id}>
               <Movie {...tv} />
             </Link>
