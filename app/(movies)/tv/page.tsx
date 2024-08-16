@@ -25,7 +25,8 @@ export default function Movies() {
       queryFn: movieFetcher,
       initialPageParam: 1,
       getNextPageParam: (lastPage, allPages) => {
-        return allPages.length + 1;
+        console.log(lastPage,allPages)
+        return lastPage + 1;
       },
     });
 

@@ -10,7 +10,7 @@ const Rating = (props:PropsRatingType) => {
         <div className="w-12 h-12 bg-white rounded-full font-bold">
             <CircularProgressbar
                 value={rating}
-                minValue={0}
+                minValue={1}
                 maxValue={10}
                 text={`${rating?.toFixed(1)}`}
                 styles={buildStyles({

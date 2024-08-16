@@ -24,12 +24,15 @@ export default function Movies() {
       queryFn: movieFetcher,
       initialPageParam: 1,
       getNextPageParam: (lastPage, allPages) => {
-        return allPages.length + 1;
+        return lastPage.page < lastPage.total_pages
+          ? lastPage.page + 1
+          : undefined;
       },
     });
 
   if (isLoading) return <Shimmer />;
   if (error) return <h1>{error.message}</h1>;
+
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center flex-wrap px-4 my-2">
@@ -50,7 +53,10 @@ export default function Movies() {
       ) : (
         <button
           className="btn bg-slate-700 px-4 py-2 rounded-lg my-4"
-          onClick={() => fetchNextPage()}
+          onClick={() => {
+            fetchNextPage();
+        
+          }}
         >
           Load More
         </button>

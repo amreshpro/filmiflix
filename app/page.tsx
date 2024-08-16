@@ -3,6 +3,7 @@ import Carousel from "@/components/Carousel";
 
 import HeroShimmer from "./HeroShimmer";
 import useMovieDetails from "@/lib/useMovieDetails";
+import SliderBox from "@/components/SliderBox";
 
 export default function Hero() {
   const queries = [
@@ -39,33 +40,11 @@ console.log(MovieResults[1].data?.results)
 
 
   return (
-    <div className="hero my-5 flex flex-col items-center text-center ">
-      <h1 className="px-2 mx-2 text-xl mb-5 mt-2 font-bold outline">
-        Movie of the Day
-      </h1>
-      <div className="movie-day">
-        <Carousel data={MovieDataDay} />
-      </div>
-
-      <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
-        TV Show of the Day
-      </h1>
-      <div className="tv-day">
-        <Carousel data={TVDataDay} />
-      </div>
-
-      <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
-        Movie of the Week
-      </h1>
-      <div className="tv-week">
-        <Carousel data={MovieDataWeek} />
-      </div>
-      <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline ">
-        TV Show of the Week
-      </h1>
-      <div className="tv-week">
-        <Carousel data={TVDataWeek} />
-      </div>
-    </div>
+<div className="hero">
+  <SliderBox data={MovieDataDay} title="Movie of the Day"/>
+  <SliderBox data={TVDataDay} title="TV of the Day"/>
+  <SliderBox data={MovieDataWeek} title="Movie of the Week"/>
+  <SliderBox data={TVDataDay} title="TV of the Week"/>
+</div>
   );
 }

@@ -9,7 +9,7 @@ const defaultParams = {
     language: "en-US",
     include_adult: "true",
     include_video: "true",
-
+    page:1
  
 };
 
@@ -24,9 +24,12 @@ export default async function fetcher(url: string, params? : Record<string,any>)
         Authorization: "Bearer " + TMDB_TOKEN,
       },
     };
+
+    console.log({...defaultParams,...params})
     return await axios(options).then((data: any) => {
       return data;
     });
+
   } catch (error) {
     return error;
   }
