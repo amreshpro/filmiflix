@@ -2,7 +2,9 @@
 import React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
+import {dark,neobrutalism} from '@clerk/themes'
+import Loading from "@/app/loading";
 
 // react-query
 const queryClient = new QueryClient();
@@ -13,13 +15,20 @@ const AppProviders = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <ClerkProvider>
-      <QueryClientProvider client={queryClient}>
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-        <NextThemesProvider attribute="class" defaultTheme="dark">
-          {children}
-        </NextThemesProvider>
-      </QueryClientProvider>
+    <ClerkProvider   appearance={{
+      baseTheme: [dark],
+    }}>
+      <ClerkLoading>
+        <Loading />
+      </ClerkLoading>
+      <ClerkLoaded>
+        <QueryClientProvider client={queryClient}>
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+          <NextThemesProvider attribute="class" defaultTheme="dark">
+            {children}
+          </NextThemesProvider>
+        </QueryClientProvider>
+      </ClerkLoaded>
     </ClerkProvider>
   );
 };
