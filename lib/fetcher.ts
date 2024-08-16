@@ -25,7 +25,6 @@ export default async function fetcher(url: string, params? : Record<string,any>)
       },
     };
 
-    console.log({...defaultParams,...params})
     return await axios(options).then((data: any) => {
       return data;
     });

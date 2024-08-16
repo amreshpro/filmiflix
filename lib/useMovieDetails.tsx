@@ -9,7 +9,6 @@ interface TVQuery {
   params?: Record<string, any>;
 }
 
-// Custom hook to fetch multiple TV show data from TMDB API
 export default function useMovieDetails(queries: TVQuery[])  {
   const queryResults = useQueries({
     queries: queries.map((query) => ({
