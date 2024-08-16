@@ -1,5 +1,4 @@
 "use client";
-import Carousel from "@/components/Carousel";
 
 import HeroShimmer from "./HeroShimmer";
 import useMovieDetails from "@/lib/useMovieDetails";
@@ -28,23 +27,29 @@ export default function Hero() {
       params: { page: 1 },
     },
   ];
+
+  
   const MovieResults = useMovieDetails(queries);
 
+  const MovieDataDay = MovieResults[0]?.data?.results;
+  const TVDataDay = MovieResults[1]?.data?.results;
+  const MovieDataWeek = MovieResults[2]?.data?.results;
+  const TVDataWeek = MovieResults[3]?.data?.results;
 
-const MovieDataDay =MovieResults[0]?.data?.results
-const TVDataDay =MovieResults[1]?.data?.results
-const MovieDataWeek =MovieResults[2]?.data?.results
-const TVDataWeek =MovieResults[3]?.data?.results
+  const isLoading =
+    MovieResults[0].isLoading ??
+    MovieResults[1].isLoading ??
+    MovieResults[2].isLoading ??
+    MovieResults[3].isLoading ??
+    false;
 
-console.log(MovieResults[1].data?.results)
-
-
+  if (isLoading) return <HeroShimmer />;
   return (
-<div className="hero">
-  <SliderBox data={MovieDataDay} title="Movie of the Day"/>
-  <SliderBox data={TVDataDay} title="TV of the Day"/>
-  <SliderBox data={MovieDataWeek} title="Movie of the Week"/>
-  <SliderBox data={TVDataDay} title="TV of the Week"/>
-</div>
+    <div className="hero">
+      <SliderBox data={MovieDataDay} title="Movie of the Day" />
+      <SliderBox data={TVDataDay} title="TV of the Day" />
+      <SliderBox data={MovieDataWeek} title="Movie of the Week" />
+      <SliderBox data={TVDataWeek} title="TV of the Week" />
+    </div>
   );
 }

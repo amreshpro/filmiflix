@@ -1,8 +1,8 @@
 "use client";
 
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import Movie from "@/components/MovieCard";
+import { useInfiniteQuery} from "@tanstack/react-query";
 import Link from "next/link";
+import Movie from "@/components/MovieCard";
 import Shimmer from "./Shimmer";
 import Loader from "@/components/Loader";
 import fetcher from "@/lib/fetcher";

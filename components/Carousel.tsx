@@ -27,13 +27,19 @@ export default function Carousel({ data }: CarouselPropType) {
 
   const scrollLeft = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: -containerRef.current.offsetWidth, behavior: 'smooth' });
+      containerRef.current.scrollBy({
+        left: -containerRef.current.offsetWidth,
+        behavior: "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
     if (containerRef.current) {
-      containerRef.current.scrollBy({ left: containerRef.current.offsetWidth, behavior: 'smooth' });
+      containerRef.current.scrollBy({
+        left: containerRef.current.offsetWidth,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -61,7 +67,7 @@ export default function Carousel({ data }: CarouselPropType) {
         tabIndex={0}
       >
         {data?.map((item) => (
-          <Link href={`/${item.media_type}/${item.id}`} key={item.id}>
+          <Link href={`/${item?.media_type}/${item?.id}`} key={item?.id}>
             <MovieCard {...item} />
           </Link>
         ))}

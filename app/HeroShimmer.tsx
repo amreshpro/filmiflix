@@ -1,46 +1,16 @@
 "use client";
 
+import SliderBox from "@/components/SliderBox";
+
 const ZERO_FILL_ARRAY = new Array(6).fill(0);
-
-
 
 export default function HeroShimmer() {
   return (
     <div className=" hero mt-5 flex flex-col items-center text-center ">
-      <h1 className="px-2 mx-2 text-xl mb-5 mt-2 font-bold outline">
-        Movie of the Day
-      </h1>
-      <div className="movie-day container transition-all flex gap-4 justify-center sm:flex-wrap overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4 ">
-      {ZERO_FILL_ARRAY?.map((_,id) => {
-          return <SkeltonCard key={id+"movieday"} />;
-        })}
-      </div>
-
-      <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
-        TV Show of the Day
-      </h1>
-      <div className="tv-day container transition-all flex gap-4 justify-center  sm:flex-wrap overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
-        {ZERO_FILL_ARRAY?.map((_,id) => {
-          return <SkeltonCard key={id+"tvday"} />;
-        })}
-      </div>
-
-      <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline ">
-        Movie of the Week
-      </h1>
-      <div className="tv-week container transition-all flex gap-4 justify-center sm:flex-wrap  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
-      {ZERO_FILL_ARRAY?.map((_,id) => {
-          return <SkeltonCard key={id+"tvweek"} />;
-        })}
-      </div>
-      <h1 className="mx-2 px-2 text-xl mb-5 font-bold outline">
-        TV Show of the Week
-      </h1>
-      <div className="tv-week container transition-all flex justify-center sm:flex-wrap gap-4  overflow-x-scroll no-scrollbar snap-mandatory snap-x px-4">
-      {ZERO_FILL_ARRAY?.map((_,id) => {
-          return <SkeltonCard key={id+"tvweek"} />;
-        })}
-      </div>
+      <SliderBox data={ZERO_FILL_ARRAY} title="Movie of the Day" />
+      <SliderBox data={ZERO_FILL_ARRAY} title="TV of the Day" />
+      <SliderBox data={ZERO_FILL_ARRAY} title="Movie of the Week" />
+      <SliderBox data={ZERO_FILL_ARRAY} title="TV of the Week" />
     </div>
   );
 }
