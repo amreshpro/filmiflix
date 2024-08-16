@@ -15,59 +15,63 @@ import SearchPopup from "./SearchPopup";
 
 function Header() {
   const [isMobileMenu, setIsMobileMenu] = useState(false);
-const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-function toggleSearchPopup(){
-  setIsSearchOpen(!isSearchOpen)
-}
+  function toggleSearchPopup() {
+    setIsSearchOpen(!isSearchOpen);
+  }
 
   function mobileMenuHandler() {
     setIsMobileMenu(!isMobileMenu);
   }
-  return (<>
-    <header className="transition-all  flex justify-between items-center px-4 py-2 ">
-      {/* logo */}
-      <div className="logo flex gap-4 items-center">
-        <Link href={"/"} className="logo rounded-lg overflow-hidden ">
-          <Image alt="logo" src="/logo.png" width={40} height={15} />
-        </Link>
-        <ThemeSwitcher className="hidden sm:flex" />
-        <Button onClick={toggleSearchPopup} className="hidden sm:flex"><IoSearch/></Button>
+  return (
+    <>
+      <header className="transition-all  flex justify-between items-center px-4 py-2 ">
+        {/* logo */}
+        <div className="logo flex gap-4 items-center">
+          <Link href={"/"} className="logo rounded-lg overflow-hidden ">
+            <Image alt="logo" src="/logo.png" width={40} height={15} />
+          </Link>
+          <ThemeSwitcher className="hidden sm:flex" />
+          <Button onClick={toggleSearchPopup} className="hidden sm:flex">
+            <IoSearch />
+          </Button>
+        </div>
 
-      </div>
+        <div className="links sm:hidden flex items-center gap-4 ">
+          <ThemeSwitcher />
+          <Button onClick={toggleSearchPopup}>
+            <IoSearch />
+          </Button>
+          <NavLink />
+          <ClerkSignInButton />
+        </div>
 
-      <div className="links sm:hidden flex items-center gap-4 ">
-        <ThemeSwitcher />
-        <Button onClick={toggleSearchPopup}><IoSearch/></Button>
-        <NavLink />
-     <ClerkSignInButton /> 
-      </div>
-
-      {/* mobile menu button */}
-      <Button
-        variant={"outline"}
-        onClick={mobileMenuHandler}
-        className="hidden sm:flex text-2xl px-2 py-2"
+        {/* mobile menu button */}
+        <Button
+          variant={"outline"}
+          onClick={mobileMenuHandler}
+          className="hidden sm:flex text-2xl px-2 py-2"
         >
-        {isMobileMenu ? (
-          <IoCloseOutline className="text-red-500" />
-        ) : (
-          <LuMenu />
-        )}
-      </Button>
+          {isMobileMenu ? (
+            <IoCloseOutline className="text-red-500" />
+          ) : (
+            <LuMenu />
+          )}
+        </Button>
 
-      {isMobileMenu && (
-        <div className="sidebar z-50  hidden  absolute top-16 right-0  w-1/3 sm:w-1/2 h-full sm:flex flex-col gap-6 bg-ternary">
-          <Sidebar />
+        {isMobileMenu && (
+          <div className="sidebar z-50  hidden  absolute top-16 right-0  w-1/3 sm:w-1/2 h-full sm:flex flex-col gap-6 bg-ternary">
+            <Sidebar />
+          </div>
+        )}
+      </header>
+      {isSearchOpen && (
+        <div className="search my-4  flex justify-center items-center sm:mx-4 ">
+          <SearchPopup className=" rounded-lg  px-2" />
         </div>
       )}
-    </header>
-    {isSearchOpen && <div className="search my-4  flex justify-center items-center sm:mx-4 ">
-      <SearchPopup className=" rounded-lg  px-2"/>
-    </div>
-      }
-    
-      </>
+    </>
   );
 }
 
