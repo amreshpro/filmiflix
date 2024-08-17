@@ -13,7 +13,7 @@
     "@clerk/themes": "^2.1.20",
     "@radix-ui/react-slot": "^1.1.0",
     "@tanstack/react-query": "^5.51.15",
-    "@tanstack/react-query-devtools": "^5.51.15",
+    "@tanstack/react-query-devtools": "^5.51.23",
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

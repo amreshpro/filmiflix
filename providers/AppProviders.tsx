@@ -3,7 +3,8 @@ import React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ClerkLoaded, ClerkLoading, ClerkProvider } from "@clerk/nextjs";
-import {dark,neobrutalism} from '@clerk/themes'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import {dark} from '@clerk/themes'
 import Loading from "@/app/loading";
 
 // react-query
@@ -23,7 +24,7 @@ const AppProviders = ({
       </ClerkLoading>
       <ClerkLoaded>
         <QueryClientProvider client={queryClient}>
-          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+          <ReactQueryDevtools initialIsOpen={false} />
           <NextThemesProvider attribute="class" defaultTheme="dark">
             {children}
           </NextThemesProvider>
