@@ -18,6 +18,7 @@ interface Movie {
   poster_path: string;
   vote_average: number;
   first_air_date: string;
+  media_type: string;
 }
 
 interface MovieResponse {
@@ -61,7 +62,7 @@ export default function SearchList() {
       <div className="movies flex gap-8 justify-center flex-wrap py-8">
         {data?.pages?.flatMap((movieItem: MovieResponse) =>
           movieItem.results.map((movie: Movie) => (
-            <Link href={`/movie/${movie.id}`} key={movie.id}>
+            <Link href={`/${movie?.media_type}/${movie.id}`} key={movie.id}>
               <MovieCard {...movie} />
             </Link>
           ))
