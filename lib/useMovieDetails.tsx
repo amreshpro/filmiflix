@@ -15,7 +15,8 @@ export default function useMovieDetails(queries: TVQuery[])  {
       queryKey: [query.queryKey],
       queryFn: async () => {
         const response = await fetcher(query.endpoint, query.params);
-        return response.data;
+        console.log("response",response)
+        return response;
       },
     })),
   });

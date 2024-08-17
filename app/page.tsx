@@ -3,32 +3,35 @@
 import HeroShimmer from "./HeroShimmer";
 import useMovieDetails from "@/lib/useMovieDetails";
 import SliderBox from "@/components/SliderBox";
+import { useMemo } from "react";
 
 export default function Hero() {
-  const queries = [
-    {
-      queryKey: "movieDataDay",
-      endpoint: `/trending/movie/day`,
-      params: { page: 1 },
-    },
-    {
-      queryKey: "TVDataDay",
-      endpoint: `/trending/tv/day`,
-      params: { page: 1 },
-    },
-    {
-      queryKey: "movieDataWeek",
-      endpoint: `/trending/movie/week`,
-      params: { page: 1 },
-    },
-    {
-      queryKey: "tvDataWeek",
-      endpoint: `/trending/tv/week`,
-      params: { page: 1 },
-    },
-  ];
+  const queries = useMemo(
+    () => [
+      {
+        queryKey: "movieDataDay",
+        endpoint: `/trending/movie/day`,
+        params: { page: 1 },
+      },
+      {
+        queryKey: "TVDataDay",
+        endpoint: `/trending/tv/day`,
+        params: { page: 1 },
+      },
+      {
+        queryKey: "movieDataWeek",
+        endpoint: `/trending/movie/week`,
+        params: { page: 1 },
+      },
+      {
+        queryKey: "tvDataWeek",
+        endpoint: `/trending/tv/week`,
+        params: { page: 1 },
+      },
+    ],
+    []
+  );
 
-  
   const MovieResults = useMovieDetails(queries);
 
   const MovieDataDay = MovieResults[0]?.data?.results;
@@ -37,13 +40,14 @@ export default function Hero() {
   const TVDataWeek = MovieResults[3]?.data?.results;
 
   const isLoading =
-    MovieResults[0].isLoading ??
-    MovieResults[1].isLoading ??
-    MovieResults[2].isLoading ??
-    MovieResults[3].isLoading ??
-    false;
+    MovieResults.some((result) => result.isLoading);
+
+  const isError =
+    MovieResults.some((result) => result.isError);
 
   if (isLoading) return <HeroShimmer />;
+  if (isError) return <div>Error loading data...</div>;
+
   return (
     <div className="hero">
       <SliderBox data={MovieDataDay} title="Movie of the Day" />
