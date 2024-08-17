@@ -24,7 +24,7 @@ const AppProviders = ({
       </ClerkLoading>
       <ClerkLoaded>
         <QueryClientProvider client={queryClient}>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           <NextThemesProvider attribute="class" defaultTheme="dark">
             {children}
           </NextThemesProvider>
