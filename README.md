@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🎥 **Filmiflix**  
+**Discover, Search, and Explore Movies Effortlessly!**  
 
-## Getting Started
+🌐 **Live Site:** [filmiflix.netlify.app](https://filmiflix.netlify.app)  
+💻 **GitHub Code:** [View Repository](https://github.com/amreshpro/filmiflix)  
 
-First, run the development server:
+![Home Page Screenshot](./public/proj-home.png)
 
+
+---
+
+## 🚀 **About Filmiflix**  
+Filmiflix is a modern movie discovery platform for all cinephiles! Whether you’re looking for trending movies, detailed information, or trailers, Filmiflix has it all.  
+
+With its sleek and responsive design, Filmiflix ensures an exceptional user experience across all devices.  
+
+---
+
+## 🌟 **Features**  
+- **Trending Movies**: Stay updated with the latest popular titles.  
+- **Search Functionality**: Find your favorite movies with real-time search suggestions.  
+- **Movie Details**: Access runtime, director, writer, star cast, and trailers.  
+- **Responsive Design**: Works flawlessly on desktops, tablets, and mobile devices.  
+
+---
+
+## 🛠️ **Tech Stack**  
+
+| **Technology**   | **Description**                  |  
+|-------------------|----------------------------------|  
+| **Next.js**       | Framework for building modern web apps |  
+| **React.js**      | Component-based frontend library|  
+| **Tailwind CSS**  | Utility-first CSS framework     |  
+| **TMDB API**      | For fetching dynamic movie data and trailers |  
+| **Axios**         | HTTP client for API calls       |  
+
+---
+
+## 📸 **Screenshots**  
+
+### **Home Page**  
+![Home Page Screenshot](./public/proj-home.png)
+
+### **Movie Details Page**  
+![Home Page Screenshot](./public/proj-detail.png)
+
+---
+
+## 🚀 **Getting Started**  
+
+### **Clone the Repository**  
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/amreshpro/filmiflix.git
+cd filmiflix
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **Install Dependencies**  
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Run the Application Locally**  
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### **Build for Production**  
+```bash
+npm run build
+```
 
-## Learn More
+### **Environment Variables**  
+Create a `.env.local` file in the root directory and add your TMDB API key:  
+```env
+# TMDB 
+NEXT_PUBLIC_BASE_URL=https://api.themoviedb.org/3
+NEXT_PUBLIC_IMAGE_BASE_URL=https://image.tmdb.org/t/p/original
+NEXT_PUBLIC_TMDB_TOKEN=
 
-To learn more about Next.js, take a look at the following resources:
+# Clerk
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 💡 **Future Enhancements**  
+- Implement **User Authentication** to save personalized watchlists.  
+- Add **Multi-language Support** for a global audience.  
+- Introduce **Movie Reviews & Ratings** by users.  
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🖊️ **Contributing**  
+Contributions are welcome! Here's how you can contribute:  
+1. Fork the project.  
+2. Create a new branch (`git checkout -b feature/YourFeature`).  
+3. Commit your changes (`git commit -m "Add YourFeature"`).  
+4. Push to the branch (`git push origin feature/YourFeature`).  
+5. Open a pull request.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
+
+## 📄 **License**  
+This project is licensed under the [MIT License](LICENSE).  
+
+---
+
+## 💬 **Contact**  
+If you have any questions, feedback, or ideas, feel free to reach out:  
+- **Email**: amresh.terminal@gmail.com  
+- **LinkedIn**: [amresh9](https://linkedin.com/in/amresh9)  
+
+---
+
+### ⭐ **If you liked this project, don’t forget to star the repository!**  
+
+---
+
+Let me know if you'd like to include more details or further customize it! 🚀
