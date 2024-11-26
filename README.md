@@ -118,5 +118,3 @@ If you have any questions, feedback, or ideas, feel free to reach out:
 ### ⭐ **If you liked this project, don’t forget to star the repository!**  
 
 ---
-
-Let me know if you'd like to include more details or further customize it! 🚀
